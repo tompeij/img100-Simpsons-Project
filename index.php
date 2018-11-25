@@ -109,9 +109,10 @@ function persistant_checkbox($val) {
                 <div class="characters__container layout-container">
                     <div class="characters__row layout-row">
                         <ul class="characters__items">
+
                         <?php
 
-                        // Show character profiles of selected character names.
+                        // Show profiles of selected character names.
                         foreach($characters as $key => $value) {
 
                             if ($selections[$key]){
