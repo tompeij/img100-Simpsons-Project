@@ -3,8 +3,11 @@
 // Read JSON, and convert to array
 $characters_json = file_get_contents('characters.json');
 $characters = json_decode($characters_json, true);
+
+// Convert selected checkboxes to array
 $selections = $_GET;
 
+// Add Function to keep boxes checked after clicking 'Show Characters' or page refresh
 function persistant_checkbox($val) {
     if(isset($_GET[$val])) 
     echo "checked='checked'";
@@ -110,19 +113,19 @@ function persistant_checkbox($val) {
                     <div class="characters__row layout-row">
                         <ul class="characters__items">
 
-                        <?php
+                <?php
 
                         // Show profiles of selected character names.
-                        foreach($characters as $key => $value) {
-
-                            if ($selections[$key]){
+                        foreach($characters as $key => $value):
+                
+                            if ($selections[$key]):
 
                                 $first_name = $value['first_name'];
                                 $last_name = $value['last_name'];
                                 $age = $value['age'];
                                 $occupation = $value['occupation'];
                                 $voiced_by = $value['voiced_by'];
-                                $img_url = $value['image_url'];
+                                $image_url = $value['image_url'];
 
                             ?>
 
@@ -130,9 +133,9 @@ function persistant_checkbox($val) {
 
                                     <div class="characters__item">
 
-                                    <?php if($img_url){?> 
+                                    <?php if($image_url){?> 
 
-                                        <img src="<?=$img_url?>" alt="<?=$first_name?>" class="characters__image">    
+                                        <img src="<?=$image_url?>" alt="<?=$first_name?>" class="characters__image">    
 
                                     <div class="characters__info">
 
@@ -171,9 +174,10 @@ function persistant_checkbox($val) {
                                     </div>
                                 </li>
                             
-                            <?php }
-                            }
-                            ?>
+                    <?php
+                            endif;
+                        endforeach;
+                    ?>
                         </ul>
                     </div>
                 </div>
