@@ -54,17 +54,13 @@ function persistant_checkbox($val) {
 
                                     <ul class="form__items">
 
-                                    <?php foreach($characters as $character): 
-                                             $first_name = $character['first_name'];
-                                             $full_name = $character['first_name'] . " " . $character['last_name'];
-                                    ?>
+                                    <?php foreach($characters as $character => $value): ?>
                                         <li class="form__item">
-                                            <label for="<?= $first_name ?>">
-                                                <?= $full_name ?> </label>
-                                            <input id="<?= $first_name ?>" type="checkbox" name="<?= $first_name ?>" <?php persistant_checkbox($first_name) ?>>
-                                        </li>
-                                        
-                                        <?php endforeach;?>
+                                            <label for="<?= $character ?>">
+                                                <?= $value['first_name'] . " " . $value['last_name'] ?> </label>
+                                            <input id="<?= $character ?>" type="checkbox" name="<?= $character ?>" <?php persistant_checkbox($character) ?>>
+                                        </li>  
+                                    <?php endforeach;?>
 
                                     </ul>
 
@@ -84,16 +80,16 @@ function persistant_checkbox($val) {
 
                 <?php
 
-                        foreach ( $characters as $character ):
+                        foreach ( $characters as $character => $value ):
                
-                            if ( $selections [ $character['first_name'] ] ):
+                            if ( $selections [ $character ] ):
 
-                                $first_name = $character['first_name'];
-                                $last_name = $character['last_name'];
-                                $age = $character['age'];
-                                $occupation = $character['occupation'];
-                                $voiced_by = $character['voiced_by'];
-                                $image_url = $character['image_url'];
+                                $first_name = $value['first_name'];
+                                $last_name = $value['last_name'];
+                                $age = $value['age'];
+                                $occupation = $value['occupation'];
+                                $voiced_by = $value['voiced_by'];
+                                $image_url = $value['image_url'];
 
                             ?>
 
