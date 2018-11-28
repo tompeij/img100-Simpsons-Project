@@ -55,7 +55,7 @@ function persistant_checkbox($val) {
                                     <ul class="form__items">
 
                                     <?php foreach($characters as $character): 
-                                             $first_name = strtolower($character['first_name']);
+                                             $first_name = $character['first_name'];
                                              $full_name = $character['first_name'] . " " . $character['last_name'];
                                     ?>
                                         <li class="form__item">
@@ -84,17 +84,16 @@ function persistant_checkbox($val) {
 
                 <?php
 
-                        // Show profiles of selected character names.
-                        foreach ( $characters as $key => $value ):
-                
-                            if ( $selections [ $key ] ):
+                        foreach ( $characters as $character ):
+               
+                            if ( $selections [ $character['first_name'] ] ):
 
-                                $first_name = $value['first_name'];
-                                $last_name = $value['last_name'];
-                                $age = $value['age'];
-                                $occupation = $value['occupation'];
-                                $voiced_by = $value['voiced_by'];
-                                $image_url = $value['image_url'];
+                                $first_name = $character['first_name'];
+                                $last_name = $character['last_name'];
+                                $age = $character['age'];
+                                $occupation = $character['occupation'];
+                                $voiced_by = $character['voiced_by'];
+                                $image_url = $character['image_url'];
 
                             ?>
 
