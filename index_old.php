@@ -12,6 +12,11 @@ function persistant_checkbox($val) {
     if ( isset($_GET[ $val ]) ) 
     echo "checked='checked'";
 }
+
+foreach($characters as $character){
+    var_dump($character['first_name']);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,19 +58,49 @@ function persistant_checkbox($val) {
                                 <form method="get">
 
                                     <ul class="form__items">
-
-                                    <?php foreach($characters as $character): 
-                                             $first_name = strtolower($character['first_name']);
-                                             $full_name = $character['first_name'] . " " . $character['last_name'];
-                                    ?>
                                         <li class="form__item">
-                                            <label for="<?= $first_name ?>">
-                                                <?= $full_name ?> </label>
-                                            <input id="<?= $first_name ?>" type="checkbox" name="<?= $first_name ?>" <?php persistant_checkbox($first_name) ?>>
-                                        </li>
-                                        
-                                        <?php endforeach;?>
 
+                                            <label for="homer">
+                                                Homer Simpson </label>
+
+                                            <input id="homer" type="checkbox" name="homer" <?php persistant_checkbox('homer'); ?>>
+                                        </li>
+                                        <li class="form__item">
+
+                                            <label for="marge">
+                                                Marge Simpson </label>
+
+                                            <input id="marge" type="checkbox" name="marge" <?php persistant_checkbox('marge'); ?>>
+                                        </li>
+                                        <li class="form__item">
+
+                                            <label for="bart">
+                                                Bart Simpson </label>
+
+                                            <input id="bart" type="checkbox" name="bart" <?php persistant_checkbox('bart'); ?>>
+                                        </li>
+                                        <li class="form__item">
+
+                                            <label for="lisa">
+                                                Lisa Simpson </label>
+
+                                            <input id="lisa" type="checkbox" name="lisa" <?php persistant_checkbox('lisa'); ?>>
+                                        </li>
+                                        <li class="form__item">
+
+                                            <label for="maggie">
+                                                Maggie Simpson </label>
+
+                                            <input id="maggie" type="checkbox" name="maggie" <?php persistant_checkbox('maggie'); ?>>
+                                        </li>
+                                        <li class="form__item">
+
+                                            <label for="moe">
+                                                Moe Szyslak </label>
+
+                                            <input id="moe" type="checkbox" name="moe" <?php persistant_checkbox('moe'); ?>>
+                                        </li>
+                                  
                                     </ul>
 
                                     <input class="form__button" type="submit" value="Show Characters">
