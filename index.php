@@ -4,15 +4,13 @@
 $characters_json = file_get_contents('characters.json');
 $characters = json_decode($characters_json, true);
 
-// Convert selected checkboxes to array
-$selections = $_GET;
-
 // Add Function to keep checkboxes selected after clicking 'Show Characters' or page refresh
 function persistant_checkbox($val) {
     if ( isset($_GET[ $val ]) ) 
     echo "checked='checked'";
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,41 +33,29 @@ function persistant_checkbox($val) {
     <div id="content" class="site-content">
         <div id="primary" class="content-area">
             <div id="main" class="site-main">
-
                 <div class="form__container layout-container">
                     <div class="form__row layout-row">
                         <div class="form__itemsContainer">
-
                             <div class="form__imageContainer">
                                 <img src="Simpsons%20Archives_files/simpsons.jpg" alt="Simpsons" class="form__image">
                             </div>
-
                             <div class="form__card">
-
-                                <h3 class="form__heading">
-                                    Select characters to show
-                                </h3>
-
+                                <h3 class="form__heading">Select characters to show</h3>
                                 <form method="get">
-
                                     <ul class="form__items">
 
-                                    <?php foreach($characters as $character => $value): ?>
+                                    <?php foreach($characters as $key => $value): ?>
                                         <li class="form__item">
-                                            <label for="<?= $character ?>">
+                                            <label for="<?= $key ?>">
                                                 <?= $value['first_name'] . " " . $value['last_name'] ?> </label>
-                                            <input id="<?= $character ?>" type="checkbox" name="<?= $character ?>" <?php persistant_checkbox($character) ?>>
-                                        </li>  
-                                    <?php endforeach;?>
-
+                                            <input id="<?= $key ?>" type="checkbox" name="<?= $key ?>" <?php persistant_checkbox( $key ) ?> >
+                                        </li>
+                                    <?php endforeach; ?>
+                                  
                                     </ul>
-
                                     <input class="form__button" type="submit" value="Show Characters">
-
                                 </form>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -79,10 +65,10 @@ function persistant_checkbox($val) {
                         <ul class="characters__items">
 
                 <?php
-
-                        foreach ( $characters as $character => $value ):
-               
-                            if ( $selections [ $character ] ):
+                        // Show profiles of selected character names.
+                        foreach ( $characters as $key => $value ):
+                
+                            if ( $_GET [ $key ] ):
 
                                 $first_name = $value['first_name'];
                                 $last_name = $value['last_name'];
@@ -110,37 +96,28 @@ function persistant_checkbox($val) {
                                         <?php } if ( $age ) { ?> 
 
                                     <div class="characters__age characters__attribute">
-
                                         <b>Age:</b> <?= $age ?>
-
                                     </div>
 
                                         <?php } if ( $occupation ) { ?> 
 
                                     <div class="characters__occupation characters__attribute">
-
                                         <b>Occupation:</b> <?= $occupation ?>
-
                                     </div>
                                     
                                         <?php } if ( $voiced_by ) { ?>
 
                                     <div class="characters__voicedBy characters__attribute">
-
                                         <b>Voiced by:</b> <?= $voiced_by ?>
+                                    </div> 
 
-                                        </div> 
-
-                                            <?php } ?>  
+                                        <?php } ?>  
 
                                         </div>
-
                                     </div>
                                 </li>   
-                    <?php
-                            endif;
-                        endforeach;
-                    ?>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
                 </div>
